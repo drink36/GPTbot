@@ -3,9 +3,9 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 from chatgpt import ChatGPT
-
+from dotenv import load_dotenv
 import os
-
+load_dotenv()
 line_bot_api = LineBotApi(os.getenv("LINE_CHANNEL_ACCESS_TOKEN"))
 line_handler = WebhookHandler(os.getenv("LINE_CHANNEL_SECRET"))
 working_status = os.getenv("DEFALUT_TALKING", default="true").lower() == "true"
@@ -16,12 +16,12 @@ chatgpt = ChatGPT()
 # domain root
 
 
-@app.route('/')
+@ app.route('/')
 def home():
     return 'Hello, World!'
 
 
-@app.route("/webhook", methods=['POST'])
+@ app.route("/webhook", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
@@ -36,7 +36,7 @@ def callback():
     return 'OK'
 
 
-@line_handler.add(MessageEvent, message=TextMessage)
+@ line_handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     global working_status
     working_status = True
