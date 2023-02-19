@@ -1,5 +1,5 @@
 from prompt import Prompt
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import os
 import openai
 openai.api_key = os.getenv("OPENAI_API_KEY")
